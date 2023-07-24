@@ -1,6 +1,17 @@
-import Header from "../components/Header";
+import { useEffect, useState } from "react";
+import Header from "../components/Header";  
 
 function Dashboard() {
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:3000/tasks")
+        .then((response) => response.json())
+        .then(data => {
+            setTasks(data.data)
+            console.log(data)
+        });
+    }, []);
     return (
         <div>
             <Header />
@@ -16,24 +27,14 @@ function Dashboard() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Task Title</td>
-                            <td>Description</td>
-                            <td>Due Date</td>
-                            <td>Status</td>
+                        {tasks.map((task: any, index: number) => {
+                            return <tr key={index}>
+                            <td>{task.title}</td>
+                            <td>{task.description}</td>
+                            <td>{task.due_date}</td>
+                            <td>{task.status}</td>
                         </tr>
-                        <tr>
-                            <td>Task Title</td>
-                            <td>Description</td>
-                            <td>Due Date</td>
-                            <td>Status</td>
-                        </tr>
-                        <tr>
-                            <td>Task Title</td>
-                            <td>Description</td>
-                            <td>Due Date</td>
-                            <td>Status</td>
-                        </tr>
+                        })}
                     </tbody>
                 </table>
             </div>
