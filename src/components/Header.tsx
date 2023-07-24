@@ -10,16 +10,16 @@ function Header() {
             <nav className="flex-1">
                 <ul>
                     <li className="float-left">
-                        <a href="#" className="text-lg hover:text-sky-700 hover:underline mx-3">Home</a>
+                        <a href="/" className="text-lg hover:text-sky-700 hover:underline mx-2">Home</a>
                     </li>
                     <li className="float-left">
-                        <a href="#" className="text-lg hover:text-sky-700 hover:underline mx-3">Dashboard</a>
+                        <a href="/" className="text-lg hover:text-sky-700 hover:underline mx-2">Dashboard</a>
                     </li>
                     <li className="float-left">
-                        <a href="#" className="text-lg hover:text-sky-700 hover:underline mx-3">New Task</a>
+                        <a href="new" className="text-lg hover:text-sky-700 hover:underline mx-2">New Task</a>
                     </li>
                     <li className="float-left">
-                        <a href="#" className="text-lg hover:text-sky-700 hover:underline mx-3">Contact Us</a>
+                        <a href="#" className="text-lg hover:text-sky-700 hover:underline mx-2">Contact Us</a>
                     </li>
                 </ul>
             </nav>
