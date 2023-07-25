@@ -1,27 +1,39 @@
-# React + TypeScript + Vite
+# Task Manager
+Task Manager is a web application where users can get to manage their schedules and tasks.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+Manage your schedule and tasks.
 
-Currently, two official plugins are available:
+## Technologies Used
+This is the client side, I have used:
+- React + TypeScript
+- TailwindCSS
+  
+## Getting Started
+To get started, you need to clone this repository using the command: 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+        git clone git@github.com:Samueelx/task-manager.git
 
-## Expanding the ESLint configuration
+### Project Setup
+To run and test this web application on your local computer, you need to have installed the following:
+- Visual Studio Code (Or any other code editor of your choice)
+- A web browser
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+### Run the web application
+To run this web application on your browser: 
+- Open your terminal in the root directory of this project
+- Open VS Code using the command:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+        code .
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- In the terminal, at the root directory of the project, type in this command:
+
+         npm run dev
+ 
+
+## Licence
+ [MIT](https://github.com/Samueelx/poetry-hub/blob/master/LICENCE)
+
+ ## Author
+ Samuel Gitimu
