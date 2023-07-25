@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import {
     Datepicker,
@@ -8,7 +8,14 @@ import {
 import './newtask.css'
 
 
+
 function NewTasks() {
+    const [task, setTask] = useState({
+        title: '',
+        description: '',
+        due_date: new Date().toISOString(),
+        status: 1
+    })
 
     useEffect(() => {
         initTE({ Datepicker, Input });
@@ -18,20 +25,45 @@ function NewTasks() {
             disablePast: true
         });
     }, []);
+
+    function handleSubmit(e: React.SyntheticEvent) {
+        e.preventDefault()
+
+        fetch("http://127.0.0.1:3000/tasks", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(task)
+        }).then(res => res.json())
+            .then(data => console.log(data))
+    }
+
+    function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>): void {
+        const value = e.target.value;
+        const name = e.target.name;
+
+        setTask({
+            ...task, [name]: value,
+        });
+
+        console.log(task)
+    }
+
     return (
         <>
             <Header />
             {/**The Form */}
             <div className="flex justify-center items-center mt-8">
-                <form className="flex flex-col justify-center items-center min-w-max max-w-lg">
+                <form className="flex flex-col justify-center items-center min-w-max max-w-lg" onSubmit={handleSubmit}>
                     <label htmlFor="username" className="block flex-1">
                         <span className="text-gray-700">Title</span>
-                        <input id="title" name="title" type="text" className="block m-2 mb-4 rounded-md p-2 w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Title: "></input>
+                        <input id="title" onChange={handleChange} name="title" type="text" className="block m-2 mb-4 rounded-md p-2 w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Title: "></input>
                     </label>
 
                     <label htmlFor="description" className="block flex-1">
                         <span className="text-gray-700">Description</span>
-                        <textarea id="description" name="description" className="block m-2 mb-4 rounded-md p-2 w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Description: "></textarea>
+                        <textarea id="description" onChange={handleChange} name="description" className="block m-2 mb-4 rounded-md p-2 w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Description: "></textarea>
                     </label>
 
                     <label htmlFor="due" className="block flex-1">
@@ -45,7 +77,7 @@ function NewTasks() {
                                 className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                 placeholder="Select a date"
                                 id="due"
-                                name="due" />
+                                name="due" onChange={handleChange} />
                             <label
                                 htmlFor="floatingInput"
                                 className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
@@ -58,17 +90,17 @@ function NewTasks() {
                         <legend>Select a status:</legend>
 
                         <div>
-                            <input type="radio" id="incomplete" name="status" value="incomplete"/>
+                            <input type="radio" id="incomplete" name="status" value="1" onChange={handleChange} />
                             <label htmlFor="incomplete">Incomplete</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="inprogress" name="status" value="inprogress" />
+                            <input type="radio" id="inprogress" name="status" value="2" onChange={handleChange} />
                             <label htmlFor="inprogress">In Progress</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="done" name="status" value="done" />
+                            <input type="radio" id="done" name="status" value="3" onChange={handleChange} />
                             <label htmlFor="done">Done</label>
                         </div>
                     </fieldset>
