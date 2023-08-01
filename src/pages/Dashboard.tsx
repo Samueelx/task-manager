@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";  
 
 function Dashboard() {
@@ -27,9 +28,11 @@ function Dashboard() {
                         </tr>
                     </thead>
                     <tbody>
-                        {tasks.map((task: any, index: number) => {
-                            return <tr key={index}>
-                            <td>{task.title}</td>
+                        {tasks.map((task: any) => {
+                            return <tr key={task.id}>
+                            <td>
+                                <Link to={`/tasks/${task.id}`}>{task.title}</Link>
+                            </td>
                             <td>{task.description}</td>
                             <td>{task.due_date}</td>
                             <td>{task.status}</td>

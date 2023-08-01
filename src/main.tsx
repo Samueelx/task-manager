@@ -2,8 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider,} from 'react-router-dom'
 import NewTasks from './pages/NewTasks.tsx'
+import Task from './pages/Task.tsx'
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "new",
     element: <NewTasks />
+  },
+  {
+    path: "/tasks/:taskId",
+    element: <Task />
   }
 ]);
 
